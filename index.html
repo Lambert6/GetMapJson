@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GetJson</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/kendo.common.min.css">
+    <link rel="stylesheet" href="css/kendo.default.min.css">
+    <link rel="stylesheet" href="css/kendo.default.mobile.min.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="config/config.js"></script>
+    <script src="js/components/kendo-dropdown.js"></script>
+    <script src="js/components/echartMap.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/echarts.min.3.0.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+        <div class="load_title">正在获取高德最新地图数据,请耐心等待哇~
+            <br>
+            <span>\(^o^)/~</span>
+        </div>
+    </div>
+    <div class="main" id="app">
+        <div class="top">
+            <div>
+                <span>省/直辖市：</span>
+                <kendo-drop @child-by-value="getchildval" :id="id[0]" :datasource="prodatasource"></kendo-drop>
+                <span>区/市：</span>
+                <kendo-drop @child-by-value="getchildval" :id="id[1]" :datasource="citydatasource"></kendo-drop>
+                <span>县：</span>
+                <kendo-drop @child-by-value="getchildval" :id="id[2]" :datasource="areadatasource"></kendo-drop>
+                <span style="padding-left: 130px;"> <button @click="exportJSON" class="k-primary k-button">下载当前地图</button></span>
+            </div>
+        </div>
+        <div id="container" class="content">
+            <e-map :id="mapid" :geojson="jsonmap" style="width:100%;height:100%"></e-map>
+        </div>
+    </div>
+</body>
+
+</html>
